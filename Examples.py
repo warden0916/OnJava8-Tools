@@ -154,7 +154,7 @@ def clean():
 
 @cli.command()
 def all():
-    """Clean, extract Markdown examples, copy gradle files from OnJava-Examples"""
+    """Clean, Extract examples, copy gradle files <- OnJava8-Examples"""
     print("Extracting ...")
     remove_examples_directories()
     extract_all_examples()

@@ -25,7 +25,7 @@ def insert_copyright(lines):
     else:
         cmt = "//"
     return [lines[0],
-            cmt + " (c)2020 MindView LLC: see Copyright.txt\n",
+            cmt + " (c)2021 MindView LLC: see Copyright.txt\n",
             cmt + " We make no guarantees that this code is fit for any purpose.\n",
             cmt + " Visit http://OnJava8.com for more book information.\n",
             ] + lines[1:]
@@ -105,11 +105,13 @@ def copy_examples():
 def _copy_examples():
     "Copy example tree into github example code directory"
     print("Copying new github files >>>>>>>>>>>>")
-    for di in (x for x in config.example_dir.glob("*")):
+    for di in (x for x in config.example_dir.glob("*") if x.stem != ".gradle"):
         print(di.name)
         if di.is_dir():
+            print(f"\tcopytree {di} -> {config.github_code_dir / di.name}")
             shutil.copytree(str(di), str(config.github_code_dir / di.name))
         else:
+            print(f"\tcopyfile {di} -> {config.github_code_dir / di.name}")
             shutil.copyfile(str(di), str(config.github_code_dir / di.name))
 
 
